@@ -105,7 +105,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
   <header class="hero">
     <div class="hero-top">
       <div class="brand">SpeechCritic</div>
-      <a class="code-link" href="https://anonymous.4open.science/r/speechcritic_sub-89CE/README.md" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a>
+      <a class="code-link" id="code-link" href="#" target="_blank" rel="noopener noreferrer">View code <span aria-hidden="true">↗</span></a>
     </div>
     <h1>Diagnostic speech evaluation</h1>
     <p>Listen to one reference and two candidates, then compare human judgements with audio-grounded model rationales.</p>
@@ -243,6 +243,17 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
   <footer>Demo audio is recreated for illustration; no study dataset or benchmark is released.</footer>
 </main>
 <script>
+const codeLink = document.getElementById('code-link');
+const anonymousMatch = location.pathname.match(/^\/w\/([^/]+)/);
+if (location.hostname === 'anonymous.4open.science' && anonymousMatch) {
+  codeLink.href = `/r/${anonymousMatch[1]}/README.md`;
+} else if (location.hostname.endsWith('.github.io')) {
+  const owner = location.hostname.slice(0, -'.github.io'.length);
+  const repository = location.pathname.split('/').filter(Boolean)[0];
+  codeLink.href = `https://github.com/${owner}/${repository}`;
+} else {
+  codeLink.href = '../README.md';
+}
 document.querySelectorAll('audio').forEach(player => player.addEventListener('play', () => {
   document.querySelectorAll('audio').forEach(other => { if (other !== player) other.pause(); });
 }));
