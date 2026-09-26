@@ -17,7 +17,7 @@ human preferences + domain measurements
 
 ## What is included
 
-- `data/`: a runnable, modality-agnostic **select--calibrate--scale** pipeline.
+- `data/`: a **select--calibrate--scale** pipeline.
   Selection uses grouped out-of-fold validation; calibration learns an
   uncertainty-preserving multinomial mapping; scaling freezes and applies that
   mapping to new pairs. Vision or other perception tasks can substitute their
