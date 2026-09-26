@@ -246,7 +246,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:28px}
 const codeLink = document.getElementById('code-link');
 const anonymousMatch = location.pathname.match(/^\/w\/([^/]+)/);
 if (location.hostname === 'anonymous.4open.science' && anonymousMatch) {
-  codeLink.href = `/r/${anonymousMatch[1]}/README.md`;
+  codeLink.href = `/r/${anonymousMatch[1]}/`;
 } else if (location.hostname.endsWith('.github.io')) {
   const owner = location.hostname.slice(0, -'.github.io'.length);
   const repository = location.pathname.split('/').filter(Boolean)[0];
