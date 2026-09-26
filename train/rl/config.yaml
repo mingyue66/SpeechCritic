@@ -1,0 +1,50 @@
+data:
+  train_jsonl: null
+  audio_root: null
+  include_transcripts: true
+  language: en_ja
+
+model:
+  base: Qwen/Qwen2.5-Omni-7B
+  init_adapter: "PATH/TO/SFT/CHECKPOINT"
+  system_prompt: null
+
+reward:
+  funcs: [speechcritic_overall_gated_dim]
+  weights: []
+  dim_weight: 0.3
+
+lora:
+  rank: 64
+  alpha: 128
+  dropout: 0.05
+  encoder_trainable: false
+  target_regex: null
+
+train:
+  vllm:
+    enabled: true
+    mode: colocate
+    gpu_memory_utilization: 0.35
+  algo: dapo
+  max_steps: 300
+  save_every: 20
+  num_generations: 8
+  batch_size: 1
+  grad_accum: 32
+  lr: 5.0e-6
+  kl_beta: 0.04
+  clip_epsilon: 0.2
+  clip_epsilon_high: 0.28
+  dynamic_sample: true
+  overlong_filter: true
+  loss_type: bnpo
+  importance_sampling_level: token
+  temperature: 1.0
+  top_p: 1.0
+  max_completion_length: 2048
+  max_length: 4096
+  seed: 42
+
+output:
+  dir: outputs/rl

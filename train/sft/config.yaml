@@ -1,0 +1,36 @@
+data:
+  train_jsonl: null
+  audio_root: null
+  fraction: 1.0
+  include_transcripts: true
+  language: en_ja
+
+model:
+  base: Qwen/Qwen2.5-Omni-7B
+  system_prompt: null
+
+lora:
+  rank: 128
+  alpha: 256
+  dropout: 0.05
+  encoder_trainable: false
+  target_regex: null
+
+train:
+  epochs: 6
+  max_steps: null
+  save_every: 50
+  batch_size: 2
+  grad_accum: 4
+  lr: 5.0e-5
+  lr_scheduler: cosine
+  warmup_ratio: 0.05
+  weight_decay: 0.0
+  gradient_checkpointing: true
+  max_length: 5120
+  deepspeed: zero2
+  bf16: true
+  seed: 42
+
+output:
+  dir: outputs/sft

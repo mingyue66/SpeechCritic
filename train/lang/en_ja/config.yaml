@@ -1,0 +1,4 @@
+name: en_ja
+source_label: "[English reference transcript]:"
+target_label: "[Target Japanese transcript]:"
+system_prompt: ../agnostic/system_prompt.txt

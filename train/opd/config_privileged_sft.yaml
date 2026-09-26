@@ -1,0 +1,39 @@
+data:
+  train_jsonl: null
+  audio_root: null
+  include_transcripts: true
+  language: en_ja
+
+model:
+  base: Qwen/Qwen2.5-Omni-7B
+  student_init_adapter: null
+  teacher_type: qwen2_5
+  teacher_base: null
+  teacher_adapter: "PATH/TO/SFT/CHECKPOINT"
+  teacher_privileged: true
+  system_prompt: null
+
+lora:
+  rank: 128
+  alpha: 256
+  dropout: 0.05
+  encoder_trainable: false
+
+train:
+  max_steps: 750
+  save_every: 25
+  max_new_tokens: 1024
+  loss_max_tokens: 1024
+  batch_size: 1
+  grad_accum: 8
+  lr: 5.0e-5
+  weight_decay: 0.01
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  adam_eps: 1.0e-8
+  max_grad_norm: 1.0
+  attn: sdpa
+  seed: 42
+
+output:
+  dir: outputs/opd_privileged_sft

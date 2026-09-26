@@ -1,0 +1,4 @@
+name: agnostic
+source_label: "[Source reference transcript]:"
+target_label: "[Target transcript]:"
+system_prompt: system_prompt.txt
